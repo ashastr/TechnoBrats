@@ -808,9 +808,9 @@
   version "0.13.0-696"
   resolved "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/26633365/download#0b8bbc746162390c84c30b90be4a0087bc2376db"
 
-"@evernym/react-native-white-label-app@https://gitlab.com/evernym/mobile/react-native-white-label-app.git":
+"@evernym/react-native-white-label-app@https://github.com/Gonzalo8642/react-native-white-label-app.git":
   version "1.1.1"
-  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#6532f5f6dccf76b01f37fa5ce85c77689d3e8b56"
+  resolved "https://github.com/Gonzalo8642/react-native-white-label-app.git#3e6c99af0598bcd86919acea32c9dc53dd0ab3a1"
 
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
