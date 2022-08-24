@@ -31,7 +31,7 @@ Imagine a tomorrow where you could call customer support and not share any of yo
 >Template Instructions: Briefly describe how this use case applies digit trust technology to the business challenge. 
  
 ### Approach
->Template Instructions: Describe the end to end interactions of the stakeholders in the trust triangle pertinent to this use case story.
+A Customer Identification (CIF) is an instance of standards based Digital Credential that can be used in the Verifiable Credential Trust Triangle.
 
 ![trust-triangle](./images/misc/Silent_Authentication_Trust_Triangle.png)
  
