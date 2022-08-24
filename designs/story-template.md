@@ -33,7 +33,7 @@ Imagine a tomorrow where you could call customer support and not share any of yo
 ### Approach
 A Customer Identification (CIF) is an instance of standards based Digital Credential that can be used in the Verifiable Credential Trust Triangle.
 
-![trust-triangle](./images/misc/Silent_Authentication_Trust_Triangle.png)
+![trust-triangle](./images/misc/Silent_Auth_Trust_Triangle.png)
  
 ## Vernacular
 
