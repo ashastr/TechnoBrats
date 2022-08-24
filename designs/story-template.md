@@ -33,7 +33,7 @@ Imagine a tomorrow where you could call customer support and not share any of yo
 ### Approach
 >Template Instructions: Describe the end to end interactions of the stakeholders in the trust triangle pertinent to this use case story.
 
-![trust-triangle](./images/misc/trust-triangle.png)
+![trust-triangle](./images/misc/Silent Authentication Trust Triangle.png)
  
 ## Vernacular
 
