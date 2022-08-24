@@ -1,6 +1,4 @@
-# Use Case Story Title
-
->NOTE: Update title and remove all Template Instructions.
+# Silent Authentication
  
 #### Table of Contents
 - [Use Case Story Title](#use-case-story-title) 
@@ -20,12 +18,14 @@
  
 ## Acknowledgements
 
->Template Instructions: List any acknowledgements pertaining to the concepts and resources used in this use case story.
- 
-1. This scenario leverages a fictitious company called, _Acme Enterprise_. The <img src="./images/persona/acme-logo.png" width="50" height="40"> Acme Enterprise logo is borrowed from [Katie Wickens](https://steins_kake.artstation.com/projects/ebqgb), a graphics designer.
  
 ## Business Challenge
->Template Instructions: Briefly describe the business challenge address by this use case story.
+Interacting with the world around us using identity instruments is part of our daily lives, but today’s digital representations of our identity are far from secure.
+Today when you call your Bank to get additional check books or do a wire transfer, first things customer support enquires is your personal identifiable information like SSN, date of birth, mothers maiden name etc. Imagine if you are travelling in public transport or you are in a non secure set up, you will not feel comfortable to share your PII and have concerns about sharing and protecting it. Given the ever-present threat that your information may fall into the wrong hands, it’s not surprising that 81 percent of the respondents feel they have lost control over the way their personal data are collected and used.
+
+In 2022 average number of bank users (both mobile and web and across all products) who call customer service every day is around 1478656. Imagine the time spent by customer support agent authenticating each user with their PII before proceeding.
+
+Imagine a tomorrow where you could call customer support and not share any of your PII and still get the results you called for. No manual verification of last 4 SSN or date of birth , mothers maiden name, full address etc would be needed which will result in improved fraud prevention, secure, trusted and faster authentication. Authentication would be as easy as a simple push notification and you will just have to approve it.
  
 ### Concept
 >Template Instructions: Briefly describe how this use case applies digit trust technology to the business challenge. 
