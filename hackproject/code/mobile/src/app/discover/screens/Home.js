@@ -1,21 +1,25 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState } from "react";
+import * as EvernymSdk from '@evernym/react-native-white-label-app';
 
-const Home = () => {
-  const [showNotification, setShowNotification] = useState(false);
+const Home = (props) => {
 
-  const onNotificationPress = () => console.log("calling verifier");
+  const processCredentials = (inviteUrl) => {
+    EvernymSdk.processCustomerCredentials(inviteUrl,props.handleInvitation);
+  };
 
   return (
     <View>
-      {showNotification && (
-        <TouchableOpacity
+       <TouchableOpacity
           style={styles.notification}
-          onPress={onNotificationPress}
-        >
-          <Text>✅ Verify with Customer Support</Text>
-        </TouchableOpacity>
-      )}
+          onPress={processCredentials}>
+              <Text>Get Credentials</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+         style={styles.notification}
+         onPress={processCredentials}>
+             <Text>Verify Credentials</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.loginScreenButton}
         onPress={() => setShowNotification(!showNotification)}

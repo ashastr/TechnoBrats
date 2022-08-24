@@ -33,3 +33,5 @@ __pycache__
 node_modules
 qrcode.png
 **/ios/Pods
+/hackproject/code/mobile/src/android/app/build/
+/hackproject/code/mobile/src/android/.gradle/
