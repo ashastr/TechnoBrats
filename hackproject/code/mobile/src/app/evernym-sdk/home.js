@@ -1,5 +1,5 @@
 // @flow
-import Home from "../Discover/Screens/Home";
+import Home from "../discover/screens/Home";
 
 /*
  * Here is you can customize Home view.
