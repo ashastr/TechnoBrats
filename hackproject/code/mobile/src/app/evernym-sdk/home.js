@@ -18,4 +18,5 @@ export const SHOW_EVENTS_HISTORY = true;
 export const SHOW_CAMERA_BUTTON = true;
 
 // custom component to use for Home screen rendering (instead of predefined one)
+// export const CustomHomeScreen = null;
 export const CustomHomeScreen = Home;
