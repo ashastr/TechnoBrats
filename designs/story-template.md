@@ -87,7 +87,7 @@ Silent Authentication without sharing PII
 <img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos logs in to his Discover Mobile App, finds the CIF and that is stored in the digital wallet.
 ### Step 5
  
-<img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent looks up users CIF and notifies <img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos to approve the challenge.
+<img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent looks up users CIF and notifies <img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos to approve the challenge.
 
 ### Step 6
  
