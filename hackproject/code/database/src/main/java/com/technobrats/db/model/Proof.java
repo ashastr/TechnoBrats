@@ -13,8 +13,5 @@ public class Proof {
     public Integer id;
 
     @Column
-    public String relationshipDid;
-
-    @Column
     public String status;
 }

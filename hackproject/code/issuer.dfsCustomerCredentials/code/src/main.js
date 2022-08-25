@@ -339,6 +339,7 @@ app.post('/webhook', async (req, res) => {
 				await wsSend({ type: "log", data: "Credential issued" })
 				await issueCredentialMap.get(threadId)('credential issued')
 				//Save to DB
+				//Todo: read credential details from the event
 				axios({
                 		method: 'POST',
                 		url: 'http://localhost:8080/credential',

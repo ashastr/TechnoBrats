@@ -56,6 +56,8 @@ let webhookUrl = null;
 
 let updateConfigMessage = null;
 
+let originalCustomerId = null;
+
 /**
  * Sends a message to the Verity Application Service via the Verity REST API
  * 
@@ -232,6 +234,15 @@ async function waitForVerification(relationshipDid) {
 
 		if (verificationResult === 'ProofValidated') {
 			console.log('Proof is validated!')
+    		//Todo: read customer ID from Proof
+	        axios({
+    		    method: 'POST',
+    		    url: 'http://localhost:8080/proof',
+    		    data: JSON.stringify({ id: originalCustomerId, status: "completed"}),
+    		    headers: {
+    			  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+    		}});
 			await wsSend({ type: "log", data: "Proof is validated" })
 		} else {
 			console.log('Proof is NOT validated')
@@ -348,6 +359,7 @@ app.post('/webhook', async (req, res) => {
 
 app.get('/openProofRequest/:id', async (req, res) => {
     const id = req.params['id'];
+    originalCustomerId = id;
     const proofPendingResponse = await axios({
         method: 'GET',
         url: 'http://localhost:8080/proof/' +id,

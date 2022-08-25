@@ -9,6 +9,5 @@ relationship_did VARCHAR(50) NOT NULL
 DROP TABLE IF EXISTS Proof;
 CREATE TABLE Proof (
 id INT  PRIMARY KEY,
-relationship_did VARCHAR(50) NOT NULL,
 status VARCHAR(50) NOT NULL
 );
