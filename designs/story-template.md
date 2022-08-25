@@ -61,9 +61,9 @@ A Customer Identification (CIF) is an instance of standards based Digital Creden
  
 | Actor | Role | Goals | Details |
 | --- | --- | --- | --- |
-| <img src="./images/persona/discover_logo.png" width="60" height="60"> | Verifier |  |  |
-|  <img src="./images/persona/acme-logo.png" width="50" height="40"> Acme Enterprise | Issuer |  |  |
-| <img src="./images/persona/Angelica.png" width="40" height="40"> Angelica | Consumer |  |  |
+| <img src="./images/persona/discover_logo.png" width="60" height="60"> | Issuer |  |  |
+|  <img src="./images/persona/Nicholas.png" width="50" height="40">Mr Amtrak Traveller | Consumer |  |  |
+| <img src="./images/persona/Angelica.png" width="40" height="40"> Angelica | Verifier |  |  |
  
 ## Story
 >Template Instructions: Using the sample persona images in the /images folder, describe the steps that are involved in the interactive use case story. Refer to ./HELP.md#digital-trust-use-cases for example usage.
