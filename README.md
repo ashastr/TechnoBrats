@@ -34,7 +34,7 @@ WARNING: Judges will stop listening to Pitch Video after the 2 minute mark so do
 | --- | --- |
 | Use Case | [Story](./hackproject/usecase.md) |
 | Design Thinking Miro Board | [TechnoBrats-whiteboard](https://miro.com/app/board/uXjVPduh5Rs=/) |
-| Design Thinking Playback Brief | [Playback Presentation](./presentations/TruCreds-TechnoBrats.potx)|
+| Design Thinking Playback Brief | [Playback Presentation](./presentations/TruCreds-TechnoBrats.pptx)|
 | Concept Playback Video | [Video URL]()|
 | Concept Show-n-Tell Video | [Video URL]() |
 | Code |  [Solution Readme](./hackprokect/README.md) |
