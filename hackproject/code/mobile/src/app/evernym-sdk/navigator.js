@@ -1,5 +1,5 @@
 // @flow
-
+import DiscoverId from "../discover/screens/DiscoverId";
 /*
  * Here is you can customize Navigation menu
  * */
@@ -16,13 +16,22 @@
 //   }
 // ]
 // Predefined: Home, Connections, Credentials, Settings
-export const MENU_NAVIGATION_OPTIONS = null
+export const MENU_NAVIGATION_OPTIONS = null;
+// export const MENU_NAVIGATION_OPTIONS = [
+//   {
+//     name: "Discover Identity", // id
+//     label: "Discover Identity", // label to show
+//     route: "DiscoverId", // route name
+//     // icon: <Icon name="home" />,
+//     component: DiscoverId, // React Component to render
+//   },
+// ];
 
 // component to be displayed in the navigation drawer at the top, above the navigation section
-export const DrawerHeaderContent = null
+export const DrawerHeaderContent = () => null;
 
 // component to be displayed in the navigation drawer at the bottom, below the navigation section
-export const DrawerFooterContent = null
+export const DrawerFooterContent = null;
 
 // additional routes need to be registered in the app navigator inside Screens Stack Navigator (see https://reactnavigation.org/docs/stack-navigator/)
 // Format:
@@ -34,7 +43,15 @@ export const DrawerFooterContent = null
 //   }
 // ]
 // Predefined: Home, Connections, Credentials, Settings
-export const EXTRA_SCREENS = null
+export const EXTRA_SCREENS = null;
+// export const EXTRA_SCREENS =
+// [
+//   {
+//     route: "DiscoverId",
+//     component: DiscoverId,
+//     navigationOptions: {}, //- see https://reactnavigation.org/docs/screen-options
+//   },
+// ];
 
 // additional routes need to be registered in the app navigator inside Modal Windows Stack Navigator (see https://reactnavigation.org/docs/stack-navigator/)
 // Format:
@@ -46,4 +63,4 @@ export const EXTRA_SCREENS = null
 //   }
 // ]
 // Predefined: Home, Connections, Credentials, Settings
-export const EXTRA_MODALS = null
+export const EXTRA_MODALS = null;
