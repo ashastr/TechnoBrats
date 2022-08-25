@@ -1,32 +1,35 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as EvernymSdk from '@evernym/react-native-white-label-app';
 
 const Home = (props) => {
 
+  const issuerDomain = 'https://ecd7-2600-1700-4910-7e00-2c9d-4d90-cff5-5035.ngrok.io';
+  const verifierDomain = '';
   const processCredentials = (inviteUrl) => {
     EvernymSdk.processCustomerCredentials(inviteUrl,props.handleInvitation);
   };
 
+  useEffect( () => {
+    fetch(issuerDomain + '/invite', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ id: 123, first_name: "John", last_name: "Cena"})
+  }).then( rawResponse => {
+      rawResponse.text().then( (inviteUrl) => {
+        processCredentials(inviteUrl);
+      });
+    }).catch(e => {
+      console.log('******* error!!', e);
+    });
+  }, [])
+
   return (
     <View>
-       <TouchableOpacity
-          style={styles.notification}
-          onPress={processCredentials}>
-              <Text>Get Credentials</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-         style={styles.notification}
-         onPress={processCredentials}>
-             <Text>Verify Credentials</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.loginScreenButton}
-        onPress={() => setShowNotification(!showNotification)}
-        underlayColor="#EC6B29"
-      >
-        <Text style={styles.loginText}>Simulate getting a notification</Text>
-      </TouchableOpacity>
+       <Text> Fake account center screen </Text>
     </View>
   );
 };
