@@ -1,7 +1,9 @@
 package com.technobrats.db;
 
 import com.technobrats.db.model.Credential;
+import com.technobrats.db.model.Proof;
 import com.technobrats.db.repo.CredentialsRepo;
+import com.technobrats.db.repo.ProofsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,9 @@ public class Controller {
 
     @Autowired
     private CredentialsRepo credentialsRepo;
+
+    @Autowired
+    private ProofsRepo proofsRepo;
 
     @PostMapping("/credential")
     public void saveCredential(@RequestBody Credential credential) {
@@ -30,5 +35,15 @@ public class Controller {
         return credential.orElse(null);
     }
 
+    @GetMapping("/proof/{id}")
+    public Proof getOpenProof(@PathVariable Integer id) {
+        Optional<Proof> proof = proofsRepo.findById(id);
+        return proof.orElse(null);
+    }
+
+    @PostMapping("/proof")
+    public void saveProof(@RequestBody Proof proof) {
+        proofsRepo.save(proof);
+    }
 
 }
