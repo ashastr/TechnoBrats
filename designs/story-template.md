@@ -66,34 +66,32 @@ A Customer Identification (CIF) is an instance of standards based Digital Creden
 | <img src="./images/persona/Angelica.png" width="40" height="40"> Angelica | Verifier |  | Customer Service Support Agent |
  
 ## Story
- 
-* <img src="./images/persona/acme-logo.png" width="50" height="40"> Silent Authentication without sharing PII
+
+Silent Authentication without sharing PII
  
 ## Demo Workflow
  
 ### Step 1
-<img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos is travelling in Amtrak and wants to order his Discover bank checks but doesn't know how. 
- 
-![step1](./images/uml/step1-diagram.png)
+<img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos is travelling in Amtrak and wants to order his Discover bank checks but doesn't know how. 
  
 ### Step 2
  
-<img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos wants to call Customer support but is not comfortable to share his PII for authentication in the non secure public enviornment. He decides to call customer service agent.
+<img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos wants to call Customer support but is not comfortable to share his PII for authentication in the non secure public enviornment. He decides to call customer service agent.
 
 ### Step 3
  
-<img src="./images/persona/Angelica.png.png" width="50" height="40"> Angelica the Customer support agent tells <img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos that he needs to authenticate the him and asks for CIF.
+<img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent tells <img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos that he needs to authenticate the him and asks for CIF.
 
 ### Step 4
  
-<img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos logs in to his Discover Mobile App, finds the CIF and that is stored in the digital wallet.
+<img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos logs in to his Discover Mobile App, finds the CIF and that is stored in the digital wallet.
 ### Step 5
  
-<img src="./images/persona/Angelica.png.png" width="50" height="40"> Angelica the Customer support agent looks up users CIF and notifies <img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos to approve the challenge.
+<img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent looks up users CIF and notifies <img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos to approve the challenge.
 
 ### Step 6
  
-<img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos approves the challenge and <img src="./images/persona/Angelica.png.png" width="50" height="40"> Angelica the Customer support agent receives the successfull completion of proof request.
+<img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos approves the challenge and <img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent receives the successfull completion of proof request.
 
 ### Step 7
  
@@ -101,7 +99,7 @@ BankESolutions/ATLAS auto populates customer details on the screen.
 
 ### Step 8
  
-<img src="./images/persona/Angelica.png.png" width="50" height="40"> Angelica the Customer support agent places the request for additional checks.
+<img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent places the request for additional checks.
  
 
  
