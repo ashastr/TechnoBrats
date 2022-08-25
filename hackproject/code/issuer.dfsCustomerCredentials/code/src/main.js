@@ -47,11 +47,7 @@ if (error) {
 //-------------------------------------------------------------------
 
 // Credential data
-const credentialData = {
-   "first_name": "John1",
-   "last_name": "Cena1",
-   "id": 111111113
-};
+let credentialData = {};
 
 // Maps containing promises for the started interactions - threadId is used as the map key
 const updateConfigsMap = new Map() 		// Update configs
@@ -70,6 +66,8 @@ let relationshipDid;
 
 // Public URL for the webhook endpoint
 let webhookUrl = null;
+
+let updateConfigMessage = null;
 
 /**
  * Sends a message to the Verity Application Service via the Verity REST API
@@ -143,7 +141,7 @@ async function run() {
 	//-------------------------------------------------------------------
 	// STEP 5 - Update Verity server configuration
 	//-------------------------------------------------------------------
-	const updateConfigMessage = {
+	 updateConfigMessage = {
 		configs: [
 			{
 				name: 'logoUrl',
@@ -155,6 +153,10 @@ async function run() {
 			}
 		]
 	}
+}
+
+async function issueCredential(credentialDataFromRequest) {
+    credentialData = credentialDataFromRequest;
 	const updateConfigsThreadId = uuid4()
 	const updateConfigs =
 		new Promise(function (resolve, reject) {
@@ -164,9 +166,10 @@ async function run() {
 	await updateConfigs
 
 	//-------------------------------------------------------------------
-	// STEP 6 - Relationship creation 
+	// STEP 6 - Relationship creation
 	//-------------------------------------------------------------------
 	// Create relationship key
+	 console.log('***** STEP 6 started');
 	const relationshipCreateMessage = {}
 	const relThreadId = uuid4()
 	const relationshipCreate =
@@ -189,15 +192,21 @@ async function run() {
 			relInvitationMap.set(relThreadId, resolve)
 		})
 	await sendVerityRESTMessage('123456789abcdefghi1234', 'relationship', '1.0', 'out-of-band-invitation', relationshipInvitationMessage, relThreadId)
+
+	console.log('***** STEP 6 ended');
 	const inviteUrl = await relationshipInvitation
 	console.log(`Invite URL is:\n${ANSII_GREEN}${inviteUrl}${ANSII_RESET}`)
-	await QR.toFile('public/qrcode.png', inviteUrl)
+	
+	waitForCredentialOffer();
+	return inviteUrl;
+}
 
+async function waitForCredentialOffer() {
 	//-------------------------------------------------------------------
 	// STEP 7 - Wait for and process all connection and credential requests
 	//-------------------------------------------------------------------
 	while (true) {
-
+        console.log('***** STEP 7.1 started');
 		//-------------------------------------------------------------------
 		// STEP 7.1 - Wait for the user to scan the QR code and accept the connection
 		//-------------------------------------------------------------------
@@ -208,6 +217,8 @@ async function run() {
 		console.log("relationshipDid =", relationshipDid)
 		await connection
 
+		 console.log('***** STEP 7.1 ended');
+
 		//-------------------------------------------------------------------
 		// STEP 7.2 - Credential issuance
 		//-------------------------------------------------------------------
@@ -216,7 +227,7 @@ async function run() {
 			cred_def_id: credDefId,
 			credential_values: credentialData,
 			price: 0,
-			comment: 'MyCredential',
+			comment: 'DFS Credential',
 			auto_issue: true
 		}
 		const issueCredThreadId = uuid4()
@@ -262,10 +273,16 @@ app.ws('/', function (ws, req) {
 			wsSend(logsBeforeReady.shift());
 		}
 		if (msg == "info") {
-			wsSend({ type: "info", data: { verityUrl, domainDid, webhookUrl, credDefId, credentialData } });
+			wsSend({ type: "info", data: { verityUrl, domainDid, webhookUrl, credDefId } });
 		}
 	});
 });
+
+app.post('/invite', async (req, res) => {
+    const credentialData = req.body;
+    const inviteUrl = await issueCredential(credentialData);
+    res.status(200).send(inviteUrl);
+})
 
 // Verity Application Server will send REST API callbacks to this endpoint
 app.post('/webhook', async (req, res) => {
@@ -321,6 +338,15 @@ app.post('/webhook', async (req, res) => {
 			if (message.msg['credentials~attach']) {
 				await wsSend({ type: "log", data: "Credential issued" })
 				await issueCredentialMap.get(threadId)('credential issued')
+				//Save to DB
+				axios({
+                		method: 'POST',
+                		url: 'http://localhost:8080/credential',
+                		data: JSON.stringify({ id: credentialData['id'], firstName: credentialData['first_name'], lastName: credentialData['last_name'], relationshipDid: relationshipDid}),
+                		headers: {
+                			  'Accept': 'application/json',
+                              'Content-Type': 'application/json'
+                		}});
 			}
 			else {
 				await wsSend({ type: "log", data: "Credential sent" })
@@ -344,5 +370,5 @@ app.use(express.static('public'));
 // Start server
 app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}`)
-	run()
+	run();
 })
