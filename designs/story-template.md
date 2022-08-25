@@ -72,7 +72,7 @@ Silent Authentication without sharing PII
 ## Demo Workflow
  
 ### Step 1
-<img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos is travelling in Amtrak and wants to order his Discover bank checks but doesn't know how. 
+<img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos is travelling in Amtrak and wants to order his <img src="./images/persona/discover_logo.png" width="50" height="40">  Discover bank checks but doesn't know how. 
  
 ### Step 2
  
@@ -80,7 +80,7 @@ Silent Authentication without sharing PII
 
 ### Step 3
  
-<img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent tells <img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos that he needs to authenticate the him and asks for CIF.
+<img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent tells <img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos that he needs to authenticate the him and asks for CIF issued by <img src="./images/persona/discover_logo.png" width="50" height="40">.
 
 ### Step 4
  
