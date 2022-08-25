@@ -49,11 +49,14 @@ const connectionAccepted = new Map()
 let webhookResolve
 
 // Relationship for incoming connections
-let relationshipDid;
+let originalRelationshipDid;
 
 // Public URL for the webhook endpoint
 let webhookUrl = null;
 
+let updateConfigMessage = null;
+
+let originalCustomerId = null;
 
 /**
  * Sends a message to the Verity Application Service via the Verity REST API
@@ -125,30 +128,33 @@ async function run() {
 	await updateWebhook
 
 	//-------------------------------------------------------------------
-	// STEP 4 - Update Verity server configuration
-	//-------------------------------------------------------------------
-	const updateConfigMessage = {
-		configs: [
-			{
-				name: 'logoUrl',
-				value: 'https://freeiconshop.com/wp-content/uploads/edd/bank-flat.png'
-			},
-			{
-				name: 'name',
-				value: 'Verifier'
-			}
-		]
-	}
-	const updateConfigsThreadId = uuid4()
-	const updateConfigs =
-		new Promise(function (resolve, reject) {
-			updateConfigsMap.set(updateConfigsThreadId, resolve)
-		})
-	await sendVerityRESTMessage('123456789abcdefghi1234', 'update-configs', '0.6', 'update', updateConfigMessage, updateConfigsThreadId)
-	await updateConfigs
+    // STEP 4 - Update Verity server configuration
+    //-------------------------------------------------------------------
+    updateConfigMessage = {
+    	configs: [
+    		{
+    			name: 'logoUrl',
+    			value: 'https://pbs.twimg.com/profile_images/900777042127585283/XUqbsqIE_400x400.jpg'
+    		},
+    		{
+    			name: 'name',
+    			value: 'Discover'
+    		}
+    	]
+    }
+}
 
-	//-------------------------------------------------------------------
-	// STEP 5 - Relationship creation 
+async function verify(relationshipDidFromRequest) {
+    const relationshipDid = relationshipDidFromRequest
+    const updateConfigsThreadId = uuid4()
+    const updateConfigs =
+    	new Promise(function (resolve, reject) {
+    		updateConfigsMap.set(updateConfigsThreadId, resolve)
+    	})
+    await sendVerityRESTMessage('123456789abcdefghi1234', 'update-configs', '0.6', 'update', updateConfigMessage, updateConfigsThreadId)
+    await updateConfigs
+    //-------------------------------------------------------------------
+	// STEP 5 - Relationship creation
 	//-------------------------------------------------------------------
 	// create relationship key
 	const relationshipCreateMessage = {}
@@ -158,9 +164,8 @@ async function run() {
 			relCreateMap.set(relThreadId, resolve)
 		})
 	await sendVerityRESTMessage('123456789abcdefghi1234', 'relationship', '1.0', 'create', relationshipCreateMessage, relThreadId)
-//	relationshipDid = 'SHvF3NpUMCGLCgTW5aYMMq';
-	relationshipDid = await relationshipCreate
 
+    originalRelationshipDid = relationshipDid;
 	// create invitation for the relationship
 	const relationshipInvitationMessage = {
 		'~for_relationship': relationshipDid,
@@ -174,9 +179,13 @@ async function run() {
 	await sendVerityRESTMessage('123456789abcdefghi1234', 'relationship', '1.0', 'out-of-band-invitation', relationshipInvitationMessage, relThreadId)
 	const inviteUrl = await relationshipInvitation
 	console.log(`Invite URL is:\n${ANSII_GREEN}${inviteUrl}${ANSII_RESET}`)
-	await QR.toFile('public/qrcode.png', inviteUrl)
+	waitForVerification(relationshipDid);
 
-	//-------------------------------------------------------------------
+	return inviteUrl;
+}
+
+async function waitForVerification(relationshipDid) {
+//-------------------------------------------------------------------
 	// STEP 6 - Wait for and process all connection and credential requests
 	//-------------------------------------------------------------------
 	while (true) {
@@ -196,7 +205,7 @@ async function run() {
 		//-------------------------------------------------------------------
 		const proofMessage = {
 			'~for_relationship': relationshipDid,
-			name: 'Proof of Name',
+			name: 'Proof of Identity',
 			proof_attrs: [
 				{
 					name: 'first_name',
@@ -225,6 +234,15 @@ async function run() {
 
 		if (verificationResult === 'ProofValidated') {
 			console.log('Proof is validated!')
+    		//Todo: read customer ID from Proof
+	        axios({
+    		    method: 'POST',
+    		    url: 'http://localhost:8080/proof',
+    		    data: JSON.stringify({ id: originalCustomerId, status: "completed"}),
+    		    headers: {
+    			  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+    		}});
 			await wsSend({ type: "log", data: "Proof is validated" })
 		} else {
 			console.log('Proof is NOT validated')
@@ -315,14 +333,12 @@ app.post('/webhook', async (req, res) => {
 
 		case 'did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/out-of-band/1.0/relationship-reused':
 			console.log("Connection already exists for relationship: ", message.relationship);
-//			if (relationshipDid === message.relationship) {
+			if (originalRelationshipDid === message.relationship) {
 			    await wsSend({ type: "log", data: "Connection already exists for " + message.relationship })
-			    const did = relationshipDid;
-                relationshipDid = message.relationship;
-                await connectionAccepted.get(did)('reuse')
-//			} else {
-//			    await wsSend({ type: "log", data: "This proof request is not for you :( " + message.relationship })
-//			}
+                await connectionAccepted.get(originalRelationshipDid)('reuse')
+			} else {
+			    await wsSend({ type: "log", data: "This proof request is not for you :( " + message.relationship })
+			}
 			break;
 
 		case 'did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/present-proof/1.0/presentation-result':
@@ -339,6 +355,42 @@ app.post('/webhook', async (req, res) => {
 				console.log(`Unexpected message type ${message['@type']}`)
 			}
 	}
+})
+
+app.get('/openProofRequest/:id', async (req, res) => {
+    const id = req.params['id'];
+    originalCustomerId = id;
+    const proofPendingResponse = await axios({
+        method: 'GET',
+        url: 'http://localhost:8080/proof/' +id,
+        headers: {
+        	  'Accept': 'application/json',
+              'Content-Type': 'application/json'
+        }});
+    console.log('Open proof ', proofPendingResponse.data);
+    if (proofPendingResponse.data && proofPendingResponse.data['status'] === 'open') {
+        console.log('Open proof request found for ', id);
+        const response = await axios({
+            method: 'GET',
+            url: 'http://localhost:8080/credential/' +id,
+            headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+            }});
+        console.log('RelationshipDid found for ', id);
+        const relDid = response.data;
+        if (relDid) {
+            const inviteUrl = await verify(relDid);
+            console.log('Sending invite');
+            res.status(200).send(inviteUrl);
+        } else {
+            console.log('Relationship doesn\'t exist, proof request can\'t be sent ', id);
+            res.status(200).send();
+        }
+    } else {
+        console.log('No open proof request found for ', id);
+        res.status(200).send();
+    }
 })
 
 // Serve HTML
