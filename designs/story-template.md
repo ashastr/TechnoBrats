@@ -61,27 +61,47 @@ A Customer Identification (CIF) is an instance of standards based Digital Creden
  
 | Actor | Role | Goals | Details |
 | --- | --- | --- | --- |
-| <img src="./images/persona/discover_logo.png" width="60" height="60"> | Issuer |  |  |
-|  <img src="./images/persona/Nicholas.png" width="50" height="40">Mr Amtrak Traveller | Consumer |  |  |
-| <img src="./images/persona/Angelica.png" width="40" height="40"> Angelica | Verifier |  |  |
+| <img src="./images/persona/discover_logo.png" width="60" height="60"> | Issuer | Upon verification of business policy requirements for silent authentication, issue a digital bank credential. |  |
+|  <img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolas | Consumer | Desires to access his bank account seamlessly and securely while travelling, without the need to share his PII. | Amtrak Traveller |
+| <img src="./images/persona/Angelica.png" width="40" height="40"> Angelica | Verifier |  | Customer Service Support Agent |
  
 ## Story
->Template Instructions: Using the sample persona images in the /images folder, describe the steps that are involved in the interactive use case story. Refer to ./HELP.md#digital-trust-use-cases for example usage.
  
-* <img src="./images/persona/acme-logo.png" width="50" height="40"> Acme Enterprise decided to issue a XYZ credential. 
+* <img src="./images/persona/acme-logo.png" width="50" height="40"> Silent Authentication without sharing PII
  
 ## Demo Workflow
-
->Template Instructions: Using the sample persona images in the /images folder, describe the steps od the use case story as they relate to the UML diagram. Refer to ./HELP.md#digital-trust-use-cases for example usage. If desired, a single diagram can be used instead of multiple steps. 
  
 ### Step 1
-<img src="./images/persona/acme-logo.png" width="50" height="40"> Acme Enterprise and <img src="./images/persona/discover_logo.png" width="60" height="60"> register their DIDs.
+<img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos is travelling in Amtrak and wants to order his Discover bank checks but doesn't know how. 
  
 ![step1](./images/uml/step1-diagram.png)
  
 ### Step 2
  
-<img src="./images/persona/discover_logo.png" width="60" height="60"> challenges <img src="./images/persona/Angelica.png" width="50" height="50"> Angelica for a credential.
+<img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos wants to call Customer support but is not comfortable to share his PII for authentication in the non secure public enviornment. He decides to call customer service agent.
+
+### Step 3
  
-![step2](./images/uml/step2-diagram.png)
+<img src="./images/persona/Angelica.png.png" width="50" height="40"> Angelica the Customer support agent tells <img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos that he needs to authenticate the him and asks for CIF.
+
+### Step 4
+ 
+<img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos logs in to his Discover Mobile App, finds the CIF and that is stored in the digital wallet.
+### Step 5
+ 
+<img src="./images/persona/Angelica.png.png" width="50" height="40"> Angelica the Customer support agent looks up users CIF and notifies <img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos to approve the challenge.
+
+### Step 6
+ 
+<img src="./images/persona/Nicolas.png.png" width="50" height="40"> Nicolos approves the challenge and <img src="./images/persona/Angelica.png.png" width="50" height="40"> Angelica the Customer support agent receives the successfull completion of proof request.
+
+### Step 7
+ 
+BankESolutions/ATLAS auto populates customer details on the screen.
+
+### Step 8
+ 
+<img src="./images/persona/Angelica.png.png" width="50" height="40"> Angelica the Customer support agent places the request for additional checks.
+ 
+
  
