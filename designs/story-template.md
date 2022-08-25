@@ -28,7 +28,7 @@ In 2022 average number of bank users (both mobile and web and across all product
 Imagine a tomorrow where you could call customer support and not share any of your PII and still get the results you called for. No manual verification of last 4 SSN or date of birth , mothers maiden name, full address etc would be needed which will result in improved fraud prevention, secure, trusted and faster authentication. Authentication would be as easy as a simple push notification and you will just have to approve it.
  
 ### Concept
->Template Instructions: Briefly describe how this use case applies digit trust technology to the business challenge. 
+(./images/misc/silentAuth_concept.png)
  
 ### Approach
 A Customer Identification (CIF) is an instance of standards based Digital Credential that can be used in the Verifiable Credential Trust Triangle.
