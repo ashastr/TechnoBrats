@@ -1,5 +1,6 @@
 // @flow
 import DiscoverId from "../discover/screens/DiscoverId";
+import MyCreds from "../discover/screens/MyCreds";
 /*
  * Here is you can customize My Credentials view.
  * */
@@ -11,10 +12,12 @@ export const HEADLINE = null;
 export const MyCredentialsViewEmptyState = DiscoverId;
 
 // flag indicating whether you want to show camera button.
-export const SHOW_CAMERA_BUTTON = true;
+export const SHOW_CAMERA_BUTTON = false;
 
 // custom component to use for My Credentials screen rendering (instead of predefined one)
-export const CustomMyCredentialsScreen = null;
+// This will display above cred screen
+// export const CustomMyCredentialsScreen = null;
+export const CustomMyCredentialsScreen = MyCreds;
 
 // custom component to use for Credential Details screen rendering (instead of predefined one)
 export const CustomCredentialDetailsScreen = null;

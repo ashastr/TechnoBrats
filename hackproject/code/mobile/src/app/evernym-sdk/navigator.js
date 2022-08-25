@@ -16,16 +16,18 @@ import DiscoverId from "../discover/screens/DiscoverId";
 //   }
 // ]
 // Predefined: Home, Connections, Credentials, Settings
-export const MENU_NAVIGATION_OPTIONS = null;
-// export const MENU_NAVIGATION_OPTIONS = [
-//   {
-//     name: "Discover Identity", // id
-//     label: "Discover Identity", // label to show
-//     route: "DiscoverId", // route name
-//     // icon: <Icon name="home" />,
-//     component: DiscoverId, // React Component to render
-//   },
-// ];
+// export const MENU_NAVIGATION_OPTIONS = null;
+export const MENU_NAVIGATION_OPTIONS = [
+  // {
+  //   name: 'Settings',
+  // },
+  {
+    name: "Connections",
+  },
+  {
+    name: "Credentials",
+  },
+];
 
 // component to be displayed in the navigation drawer at the top, above the navigation section
 export const DrawerHeaderContent = () => null;
