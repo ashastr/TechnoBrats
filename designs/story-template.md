@@ -102,4 +102,8 @@ BankESolutions/ATLAS auto populates customer details on the screen.
 <img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent places the request for additional checks.
  
 
+ ### UML
+ 
+  <img src="./images/uml/Silent _Authentication_UML_diagram.png"> 
+ 
  
