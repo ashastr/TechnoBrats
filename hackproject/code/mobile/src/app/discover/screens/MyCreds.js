@@ -4,37 +4,51 @@ import * as EvernymSdk from "@evernym/react-native-white-label-app";
 
 const MyCreds = (props) => {
   const issuerDomain =
-    "https://1b56-2600-1700-4910-7e00-4d1f-fbc6-4e33-582.ngrok.io";
+    "https://780a-2600-1700-4910-7e00-4d1f-fbc6-4e33-582.ngrok.io";
   const verifierDomain = "";
   const processCredentials = (inviteUrl) => {
-    console.log("EvernymSdk", JSON.stringify(EvernymSdk));
     EvernymSdk.processCustomerCredentials(inviteUrl, props.handleInvitation);
   };
 
-  const onPress = () => {
-    console.log("Calling openProofRequest");
-    fetch(issuerDomain + "/openProofRequest/123", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((rawResponse) => {
-        console.log("Processing Credentials");
-        rawResponse.text().then((inviteUrl) => {
-          processCredentials(inviteUrl);
-        });
-      })
-      .catch((e) => {
-        console.log("******* error!!", e);
-      });
-  };
+  useEffect(() => {
+    const intervalId = setInterval(callApi, 10000);
+
+    function callApi() {
+      console.log(
+        "******************** Calling openProofRequest ****************************************"
+      );
+      try {
+        fetch(issuerDomain + "/openProofRequest/123", {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+          .then((rawResponse) => {
+            console.log("Processing Credentials for verify");
+            rawResponse.text().then((inviteUrl) => {
+              processCredentials(inviteUrl);
+              console.log("intervalId", intervalId);
+              clearInterval(intervalId);
+            });
+          })
+          .catch((e) => {
+            // console.log("intervalId", intervalId);
+            // clearInterval(intervalId);
+            console.log("******* error!!", e);
+          });
+      } catch (error) {
+        console.log("error", error);
+      }
+    }
+  }, []);
+
   return (
-    <View style={{ marginVertical: "10%" }}>
-      <TouchableOpacity style={styles.notification} onPress={onPress}>
+    <View style={{ marginVertical: "40%" }}>
+      {/* <TouchableOpacity style={styles.notification} onPress={onPress}>
         <Text>✅ Verify with Customer Support</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };
@@ -46,12 +60,12 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginLeft: 10,
     marginTop: 10,
-    padding: 10,
-    backgroundColor: "#FFFFFF",
+    padding: 70,
+    // backgroundColor: "#FFFFFF",
     borderRadius: 10,
-    borderColor: "#fff",
-    borderLeftWidth: 4,
-    borderColor: "green",
+    // borderColor: "#fff",
+    // borderLeftWidth: 4,
+    // borderColor: "green",
   },
   loginScreenButton: {
     marginRight: 40,

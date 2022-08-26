@@ -816,7 +816,7 @@
 
 "@evernym/react-native-white-label-app@https://github.com/ashastr/react-native-white-label-app.git":
   version "1.1.1"
-  resolved "https://github.com/ashastr/react-native-white-label-app.git#aba83db577e9e4e5ace8552ceb4519af3811f64b"
+  resolved "https://github.com/ashastr/react-native-white-label-app.git#f9c12ceb4fc735632ae54b994b811154b6b39a36"
 
 "@hapi/hoek@^9.0.0":
   version "9.3.0"

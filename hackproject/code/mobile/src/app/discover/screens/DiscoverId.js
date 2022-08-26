@@ -7,7 +7,6 @@ export default function DiscoverId(props) {
   const issuerDomain = "https://02f4-217-180-232-50.ngrok.io";
   const verifierDomain = "";
   const processCredentials = (inviteUrl) => {
-    console.log("EvernymSdk", JSON.stringify(EvernymSdk));
     EvernymSdk.processCustomerCredentials(inviteUrl, props.handleInvitation);
   };
 
@@ -25,7 +24,7 @@ export default function DiscoverId(props) {
       }),
     })
       .then((rawResponse) => {
-        console.log("Processing Credentials");
+        console.log("Processing Credentials for issuer");
         rawResponse.text().then((inviteUrl) => {
           processCredentials(inviteUrl);
         });
