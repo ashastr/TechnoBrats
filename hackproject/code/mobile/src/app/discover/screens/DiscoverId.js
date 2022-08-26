@@ -5,7 +5,6 @@ import LottieView from "lottie-react-native";
 
 export default function DiscoverId(props) {
   const issuerDomain = "https://02f4-217-180-232-50.ngrok.io";
-  const verifierDomain = "";
   const processCredentials = (inviteUrl) => {
     EvernymSdk.processCustomerCredentials(inviteUrl, props.handleInvitation);
   };

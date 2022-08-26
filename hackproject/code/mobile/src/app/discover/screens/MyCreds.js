@@ -3,9 +3,7 @@ import React, { useEffect } from "react";
 import * as EvernymSdk from "@evernym/react-native-white-label-app";
 
 const MyCreds = (props) => {
-  const issuerDomain =
-    "https://780a-2600-1700-4910-7e00-4d1f-fbc6-4e33-582.ngrok.io";
-  const verifierDomain = "";
+  const verifierDomain = "https://780a-2600-1700-4910-7e00-4d1f-fbc6-4e33-582.ngrok.io";
   const processCredentials = (inviteUrl) => {
     EvernymSdk.processCustomerCredentials(inviteUrl, props.handleInvitation);
   };
@@ -14,11 +12,8 @@ const MyCreds = (props) => {
     const intervalId = setInterval(callApi, 10000);
 
     function callApi() {
-      console.log(
-        "******************** Calling openProofRequest ****************************************"
-      );
       try {
-        fetch(issuerDomain + "/openProofRequest/123", {
+        fetch(verifierDomain + "/openProofRequest/123", {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -34,8 +29,6 @@ const MyCreds = (props) => {
             });
           })
           .catch((e) => {
-            // console.log("intervalId", intervalId);
-            // clearInterval(intervalId);
             console.log("******* error!!", e);
           });
       } catch (error) {
@@ -46,9 +39,7 @@ const MyCreds = (props) => {
 
   return (
     <View style={{ marginVertical: "40%" }}>
-      {/* <TouchableOpacity style={styles.notification} onPress={onPress}>
-        <Text>✅ Verify with Customer Support</Text>
-      </TouchableOpacity> */}
+      {}
     </View>
   );
 };
@@ -61,11 +52,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 10,
     padding: 70,
-    // backgroundColor: "#FFFFFF",
     borderRadius: 10,
-    // borderColor: "#fff",
-    // borderLeftWidth: 4,
-    // borderColor: "green",
   },
   loginScreenButton: {
     marginRight: 40,
