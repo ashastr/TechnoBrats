@@ -1,6 +1,4 @@
-# Use Case Story Title
-
->NOTE: Update title and remove all Template Instructions.
+# Silent Authentication
  
 #### Table of Contents
 - [Use Case Story Title](#use-case-story-title) 
@@ -20,20 +18,22 @@
  
 ## Acknowledgements
 
->Template Instructions: List any acknowledgements pertaining to the concepts and resources used in this use case story.
- 
-1. This scenario leverages a fictitious company called, _Acme Enterprise_. The <img src="./images/persona/acme-logo.png" width="50" height="40"> Acme Enterprise logo is borrowed from [Katie Wickens](https://steins_kake.artstation.com/projects/ebqgb), a graphics designer.
  
 ## Business Challenge
->Template Instructions: Briefly describe the business challenge address by this use case story.
+Interacting with the world around us using identity instruments is part of our daily lives, but today’s digital representations of our identity are far from secure.
+Today when you call your Bank to get additional check books or do a wire transfer, first things customer support enquires is your personal identifiable information like SSN, date of birth, mothers maiden name etc. Imagine if you are travelling in public transport or you are in a non secure set up, you will not feel comfortable to share your PII and have concerns about sharing and protecting it. Given the ever-present threat that your information may fall into the wrong hands, it’s not surprising that 81 percent of the respondents feel they have lost control over the way their personal data are collected and used.
+
+In 2022 average number of bank users (both mobile and web and across all products) who call customer service every day is around 1478656. Imagine the time spent by customer support agent authenticating each user with their PII before proceeding. With verifiable credentials like CIF, a bank user can prove his identity, but choose not to present their other PII's.
+
+Imagine a tomorrow where you could call customer support and not share any of your PII and still get the results you called for. No manual verification of last 4 SSN or date of birth , mothers maiden name, full address etc would be needed which will result in improved fraud prevention, secure, trusted and faster authentication. Authentication would be as easy as a simple push notification and you will just have to approve it.
  
 ### Concept
->Template Instructions: Briefly describe how this use case applies digit trust technology to the business challenge. 
+ <img src="./images/misc/silentAuth_concept.png"> 
  
 ### Approach
->Template Instructions: Describe the end to end interactions of the stakeholders in the trust triangle pertinent to this use case story.
+A Customer Identification (CIF) is an instance of standards based Digital Credential that can be used in the Verifiable Credential Trust Triangle.
 
-![trust-triangle](./images/misc/trust-triangle.png)
+![trust-triangle](./images/misc/Silent_Auth_Trust_Triangle.png)
  
 ## Vernacular
 
@@ -61,27 +61,49 @@
  
 | Actor | Role | Goals | Details |
 | --- | --- | --- | --- |
-| <img src="./images/persona/discover_logo.png" width="60" height="60"> | Verifier |  |  |
-|  <img src="./images/persona/acme-logo.png" width="50" height="40"> Acme Enterprise | Issuer |  |  |
-| <img src="./images/persona/Angelica.png" width="40" height="40"> Angelica | Consumer |  |  |
+| <img src="./images/persona/discover_logo.png" width="60" height="60"> | Issuer | Upon verification of business policy requirements for silent authentication, issue a digital bank credential. |  |
+|  <img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolas | Consumer | Desires to access his bank account seamlessly and securely while travelling, without the need to share his PII. | Amtrak Traveller |
+| <img src="./images/persona/Angelica.png" width="40" height="40"> Angelica | Verifier |  | Customer Service Support Agent |
  
 ## Story
->Template Instructions: Using the sample persona images in the /images folder, describe the steps that are involved in the interactive use case story. Refer to ./HELP.md#digital-trust-use-cases for example usage.
- 
-* <img src="./images/persona/acme-logo.png" width="50" height="40"> Acme Enterprise decided to issue a XYZ credential. 
+
+Silent Authentication without sharing PII
  
 ## Demo Workflow
-
->Template Instructions: Using the sample persona images in the /images folder, describe the steps od the use case story as they relate to the UML diagram. Refer to ./HELP.md#digital-trust-use-cases for example usage. If desired, a single diagram can be used instead of multiple steps. 
  
 ### Step 1
-<img src="./images/persona/acme-logo.png" width="50" height="40"> Acme Enterprise and <img src="./images/persona/discover_logo.png" width="60" height="60"> register their DIDs.
- 
-![step1](./images/uml/step1-diagram.png)
+<img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos is travelling in Amtrak and wants to order his <img src="./images/persona/discover_logo.png" width="50" height="40">  Discover bank checks but doesn't know how. 
  
 ### Step 2
  
-<img src="./images/persona/discover_logo.png" width="60" height="60"> challenges <img src="./images/persona/Angelica.png" width="50" height="50"> Angelica for a credential.
+<img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos wants to call Customer support but is not comfortable to share his PII for authentication in the non secure public enviornment. He decides to call customer service agent.
+
+### Step 3
  
-![step2](./images/uml/step2-diagram.png)
+<img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent tells <img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos that he needs to authenticate the him and asks for CIF issued by <img src="./images/persona/discover_logo.png" width="50" height="40">.
+
+### Step 4
+ 
+<img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos logs in to his Discover Mobile App, finds the CIF and that is stored in the digital wallet.
+### Step 5
+ 
+<img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent looks up users CIF and notifies <img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos to approve the challenge.
+
+### Step 6
+ 
+<img src="./images/persona/Nicolas.png" width="50" height="40"> Nicolos approves the challenge and <img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent receives the successfull completion of proof request.
+
+### Step 7
+ 
+BankESolutions/ATLAS auto populates customer details on the screen.
+
+### Step 8
+ 
+<img src="./images/persona/Angelica.png" width="50" height="40"> Angelica the Customer support agent places the request for additional checks.
+ 
+
+ ### UML
+ 
+  <img src="./images/uml/Silent _Authentication_UML_diagram.png"> 
+ 
  
